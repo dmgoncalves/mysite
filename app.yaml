@@ -1,0 +1,11 @@
+runtime: python312    # Specify your Python version (3.9, 3.10, or 3.11 are also supported)
+env: standard          # Standard environment is best for most Flask apps
+entrypoint: gunicorn -b :$PORT main:app  # Entrypoint for starting your app (replace 'main' with your main module's name and 'app' with your Flask app object)
+instance_class: F1     # Instance class (F1 is the free tier)
+
+handlers:
+- url: /static
+  static_dir: static
+
+- url: /.*
+  script: auto
